@@ -1,9 +1,6 @@
-from colorama import init, Fore, Back, Style
 from big_latters import Start_game
 import os
 
-
-init()
 
 class Heroes:
     def __init__(self):
@@ -42,21 +39,18 @@ class Goblin(Heroes):
         self.damage = 6
         print('The Goblin was created [HP: 2 | DMG: 6]')
 
-print(Back.CYAN + Fore.WHITE + Style.BRIGHT + 
-    """
+print("""
         Ты отправился в странствие навстречу приключениям и опасностям.
         Удачного путешествия!
-"""
-      + Style.RESET_ALL)
+""")
 
-print(Back.MAGENTA + Fore.CYAN + Style.BRIGHT + 
+print(
     """
                 ВЫБЕРИТЕ ПЕРСОНАЖА:                    
   1. Рыцарь  |  2. Лучник  |  3. Маг     |  4. Гоблин  
     HP: 5    |    HP: 3    |    HP: 6    |    HP: 2    
     DMG: 3   |    DMG: 5   |    DMG: 2   |    DMG: 6   
-                                                       """
-      + Style.RESET_ALL)
+                                                       """)
 
 
 player_choice_num = int(input('Ваш выбор [1 / 2 / 3 / 4]: '))
