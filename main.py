@@ -238,39 +238,40 @@ while True:
 
     os.system('CLS')
 
-    print_level_with_player()
-    if (player.hp > 0) and (en1.hp > 0):
-        if (player.x == en1.x and player.y == en1.y):
+    if (player.hp > 0):
+        if (player.x == en1.x and player.y == en1.y and en1.hp > 0):
             en1.hit(player.damage)
             player.hit(en1.damage)
-        elif (player.x == en2.x and player.y == en2.y):
+        elif (player.x == en2.x and player.y == en2.y and en2.hp > 0):
             en2.hit(player.damage)
             player.hit(en2.damage)
-        elif (player.x == en3.x and player.y == en3.y):
+        elif (player.x == en3.x and player.y == en3.y and en3.hp > 0):
             en3.hit(player.damage)
             player.hit(en3.damage)
-        elif (player.x == en4.x and player.y == en4.y):
+        elif (player.x == en4.x and player.y == en4.y and en4.hp > 0):
             en4.hit(player.damage)
             player.hit(en4.damage)
-        elif (player.x == en5.x and player.y == en5.y):
+        elif (player.x == en5.x and player.y == en5.y and en5.hp > 0):
             en5.hit(player.damage)
             player.hit(en5.damage)
-        elif (player.x == en6.x and player.y == en6.y):
+        elif (player.x == en6.x and player.y == en6.y and en6.hp > 0):
             en6.hit(player.damage)
             player.hit(en6.damage)
-        elif (player.x == en7.x and player.y == en7.y):
+        elif (player.x == en7.x and player.y == en7.y and en7.hp > 0):
             en7.hit(player.damage)
             player.hit(en7.damage)
-        elif (player.x == en8.x and player.y == en8.y):
+        elif (player.x == en8.x and player.y == en8.y and en8.hp > 0):
             en8.hit(player.damage)
             player.hit(en8.damage)
-        elif (player.x == en9.x and player.y == en9.y):
+        elif (player.x == en9.x and player.y == en9.y and en9.hp > 0):
             en9.hit(player.damage)
             player.hit(en9.damage)
-        elif (player.x == en10.x and player.y == en10.y):
+        elif (player.x == en10.x and player.y == en10.y and en10.hp > 0):
             en10.hit(player.damage)
             player.hit(en10.damage)
 
+    print_level_with_player()
+    
     print('HERO:',hero_type[int(player_choice_num) - 1], end = '    ')
     print(f'HP: {player.hp}    DMG: {player.damage}')
 
@@ -296,7 +297,7 @@ while True:
             en8.move()
             en9.move()
             en10.move()
-        elif move == 'a' or move == 'ф':
+        if move == 'a' or move == 'ф':
             player.move(-1, 0)
             en1.move()
             en2.move()
@@ -308,7 +309,7 @@ while True:
             en8.move()
             en9.move()
             en10.move()
-        elif move == 's' or move == 'ы':
+        if move == 's' or move == 'ы':
             player.move(0, 1)
             en1.move()
             en2.move()
@@ -320,7 +321,7 @@ while True:
             en8.move()
             en9.move()
             en10.move()
-        elif move == 'd' or move == 'в':
+        if move == 'd' or move == 'в':
             player.move(1, 0)
             en1.move()
             en2.move()
