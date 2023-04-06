@@ -77,8 +77,7 @@ class Enemy(Character):
         Character.__init__(self, x, y)
         self.x = x
         self.y = y
-        self.sign = random.choice(['q','w','e','t','y','u','o','p','a','s','d', \
-                                   'f','g','h','j','k','l','z','x','c','v','b','n','m'])
+        self.sign = 'e'
         self.static_hp = random.randint(2, 6)
         self.dmg = random.randint(1, 2)
         self.hp = self.static_hp
@@ -95,14 +94,14 @@ class Player(Character):
         self.x = x
         self.y = y
         self.sign = '▼'
+        self.inventory_weapon = []
         self.inventory = []
+
+    def add_weapon(self, item):
+        self.inventory_weapon.append(item)
 
     def add_item(self, item):
         self.inventory.append(item)
-
-    def remove_item(self, item):
-        if item in self.inventory:
-            self.inventory.remove(item)
 ###########################################################################################################
 class Knight(Player):
     def __init__(self, x, y):
@@ -149,44 +148,38 @@ class Hunter(Player):
         self.weapon = 'L'
 ###########################################################################################################
 class Object:
-    def __init__(self, x, y, simbol):
+    def __init__(self, x, y, symbol):
         self.x = x
         self.y = y
-        self.simbol = simbol
+        self.symbol = symbol
 ###########################################################################################################
 class Weapon(Object):
-
-    def __init__(self, x, y, simbol):
-        Object.__init__(self, x, y, simbol)
+    def __init__(self, x, y, symbol):
+        Object.__init__(self, x, y, symbol)
         self.x = x
         self.y = y
-        self.simbol = simbol
-        '''if self.simbol in player.inventory:
-            if (self.simbol == player.weapon):
-                player.dmg += 3
-            else:
-                player.dmg += 1'''
-
+        self.symbol = symbol
+###########################################################################################################
+def add_dmg(symbol):
+    if symbol in player.inventory_weapon:
+        if (symbol == player.weapon):
+            player.dmg += 3
+        else:
+            player.dmg += 1
 ###########################################################################################################
 class Armor(Object):
     def __init__(self, x, y, symbol):
-        Object.__init__(self, x, y, simbol)
+        Object.__init__(self, x, y, symbol)
         self.x = x
         self.y = y
         self.symbol = symbol
-
 ###########################################################################################################
 class Potions(Object):
-
-    #option_Potion = ['attack', 'protect', 'luck']
-    #option = random.choice(option_Potion)
-
-    def __init__(self,x, y, simbol):
-        Object.__init__(self, x, y, simbol)
+    def __init__(self,x, y, symbol):
+        Object.__init__(self, x, y, symbol)
         self.x = x
         self.y = y
         self.symbol = symbol
-
 ###########################################################################################################
 def choose_hero_menu():
     print(
@@ -221,14 +214,26 @@ def print_level_with_player():
                 print(en9.sign, end="")
             elif (x == en10.x) and (y == en10.y) and (en10.hp > 0):
                 print(en10.sign, end="")
-            elif (x == we1.x) and (y == we1.y) and (we1.simbol not in player.inventory):
-                print(we1.simbol, end="")
+            elif (x == we1.x) and (y == we1.y) and (we1.symbol not in player.inventory_weapon):
+                print(we1.symbol, end="")
+            elif (x == we2.x) and (y == we2.y) and (we2.symbol not in player.inventory_weapon):
+                print(we2.symbol, end="")
+            elif (x == we3.x) and (y == we3.y) and (we3.symbol not in player.inventory_weapon):
+                print(we3.symbol, end="")
+            elif (x == we4.x) and (y == we4.y) and (we4.symbol not in player.inventory_weapon):
+                print(we4.symbol, end="")
+            elif (x == armor.x) and (y == armor.y)  and (armor.symbol not in player.inventory):
+                print(armor.symbol, end="")
+            elif (x == potion1.x) and (y == potion1.y)  and (potion1.symbol not in player.inventory):
+                print(potion1.symbol, end="")
+            elif (x == potion2.x) and (y == potion2.y)  and (potion2.symbol not in player.inventory):
+                print(potion2.symbol, end="")
             else:
                 print(char, end="")
         print()
 ###########################################################################################################
 def view_hp_dmg_stroke():
-    hero_type = ['Рыцарь', 'Лучник']
+    hero_type = ['Рыцарь', 'Лучник', 'Викинг', 'Oхотник']
     print('Герой:', hero_type[int(player_choice_num) - 1], end='    ')
     print(f'HP: {player.hp}/{player.static_hp}    DMG: {player.dmg}/{player.static_dmg}')
 
@@ -293,19 +298,56 @@ class Game:
                 elif (player.x == en10.x and player.y == en10.y and en10.hp > 0):
                     en10.hit(player.dmg)
                     player.hit(en10.dmg)
-                elif (player.x == we1.x) and (player.y == we1.y):
-                    player.add_item(we1.simbol)
-                    if we1.simbol in player.inventory:
-                        if (we1.simbol == player.weapon):
-                            player.dmg += 3
-                        else:
-                            player.dmg += 1
+
+
+
+                elif (player.x == we1.x) and (player.y == we1.y) and (we1.symbol not in player.inventory_weapon):
+                    player.add_weapon(we1.symbol)
+                    add_dmg(we1.symbol)
+                elif (player.x == we2.x) and (player.y == we2.y) and (we2.symbol not in player.inventory_weapon):
+                    player.add_weapon(we2.symbol)
+                    add_dmg(we2.symbol)
+                elif (player.x == we3.x) and (player.y == we3.y) and (we3.symbol not in player.inventory_weapon):
+                    player.add_weapon(we3.symbol)
+                    add_dmg(we3.symbol)
+                elif (player.x == we4.x) and (player.y == we4.y) and (we4.symbol not in player.inventory_weapon):
+                    player.add_weapon(we4.symbol)
+                    add_dmg(we4.symbol)
+
+                elif (player.x == armor.x) and (player.y == armor.y) and (armor.symbol not in player.inventory):
+                    player.add_item(armor.symbol)
+                    player.hp += 5
+
+                elif (player.x == potion1.x) and (player.y == potion1.y) and (potion1.symbol not in player.inventory):
+                    player.add_item(potion1.symbol)
+                    player.hp += 5
+                elif (player.x == potion2.x) and (player.y == potion2.y) and (potion2.symbol not in player.inventory):
+                    player.add_item(potion2.symbol)
+                    player.dmg += 2
 
                 print_level_with_player()
                 view_hp_dmg_stroke()
 
+
                 if len(player.inventory) != 0:
-                    print("\n", player.inventory[0])
+                    print("\n Броня и зелья: ", player.inventory)
+
+                if len(player.inventory_weapon) != 0:
+                    print("\n Оружие: ", player.inventory_weapon)
+
+                if len(player.inventory_weapon) > 1:
+                    print("\n Хотите поменять оружие? [y / n]")
+                    choice_num = input('\n Ваш выбор [y / n]: ')
+                    while choice_num not in ('y', 'n'):
+                        choice_num = input('Ваш выбор [y / n]: ')
+                    if choice_num == 'y':
+                        player.inventory_weapon.pop(0)
+                        player.dmg = player.static_dmg
+                        add_dmg(player.inventory_weapon[0])
+                    elif choice_num == 'n':
+                        player.inventory_weapon.pop(1)
+                        player.dmg = player.static_dmg
+                        add_dmg(player.inventory_weapon[0])
 
                 move = input('\n\n\tКуда идём [ W / A / S / D ]: ').lower()
 
@@ -396,6 +438,13 @@ en9 = Enemy(136, 3)
 en10 = Enemy(132, 48)
 
 we1 = Weapon(2,3, '|')
+we2 = Weapon(5,3, ')')
+we3 = Weapon(86,23, 'L')
+we4 = Weapon(132,39, 'Г')
+
+armor = Armor(3, 4, '#')
+potion1 = Potions(3,5,'🜂')
+potion2 = Potions(3,6,'▲')
 
 game = Game(player, en1, en2, en3, en4, en5, en6, en7, en8, en9, en10)
 game.play()
