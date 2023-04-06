@@ -47,7 +47,7 @@ labirint = ['  █████████████████████�
             '  ██    ██  ██  ████  ██          ████  ████████████████  ██████  ██  ████████████████  ████  ██████    ██  ██  ██  ██  ████    ██  ██████████████   ',
             '  ████  ██████        ██████████████                ████████  ██                        ██        ██  ████████  ██  ██    ████  ██  ██          ██   ',
             '  ██    ██      ████████      ██      ██████  ████            ██████████  ██████████████████  ██  ██            ██  ████  ████  ██  ██          ██   ',
-            '  ██  ████  ██      ████  ██  ██  ██  ██  ██    ████████████          ██        ██            ██  ██  ████████████    ██    ██  ██  ██          ██   ',
+            '  ██  ████  ██      ████  ██  ██  ██  ██  ██    ████████████          ██        ██            ██  ██  ████████████    ██    ██  ██  ██               ',
             '  ██  ████  ██  ██  ████  ██████  ██████  ████████  ██        ██████  ████████████  ████████  ██  ██  ██  ██  ██████  ████████  ██  ██          ██   ',
             '  ██        ██                    ██                    ████  ██                        ██    ██          ██                    ██              ██   ',
             '  ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████   '
@@ -276,8 +276,17 @@ def print_level_with_player():
                                'Г': 'Топор',
                                'L': 'Ружьё'}
                     weee = list(x for x in player.inventory_weapon)
+                    print_weapon = weapons[weee[0]]
                     if weee:
-                        print("    Оружие:", weapons[weee[0]], end='')
+                        print("    Оружие:", print_weapon, end='')
+                        if print_weapon == '|':
+                            list_history.append("Вы взяли Меч")
+                        elif print_weapon == ')':
+                            list_history.append("Вы взяли Лук")
+                        elif print_weapon == 'Г':
+                            list_history.append("Вы взяли Топор")
+                        elif print_weapon == 'L':
+                            list_history.append("Вы взяли Ружье")
                 else:
                     print("    Оружие: -", end='')
 
@@ -314,25 +323,55 @@ def print_level_with_player():
 
 
             elif x == 146 and y == 25:
-                print(f'   enemy 1  [HP: {en1.hp}/{en1.static_hp}   DMG: {en1.dmg}]', end='')
+                if en1.hp > 0:
+                    print(f'   enemy 1  [HP: {en1.hp}/{en1.static_hp}   DMG: {en1.dmg}]', end='')
+                else:
+                    print(f'   enemy 1  [HP: {en1.hp}/{en1.static_hp}   DMG: {en1.dmg}]  +1 осколок алмаза', end='')
             elif x == 146 and y == 26:
-                print(f'   enemy 2  [HP: {en2.hp}/{en2.static_hp}   DMG: {en2.dmg}]', end='')
+                if en2.hp > 0:
+                    print(f'   enemy 2  [HP: {en2.hp}/{en2.static_hp}   DMG: {en2.dmg}]', end='')
+                else:
+                    print(f'   enemy 2  [HP: {en2.hp}/{en2.static_hp}   DMG: {en2.dmg}]  +1 осколок алмаза', end='')
             elif x == 146 and y == 27:
-                print(f'   enemy 3  [HP: {en3.hp}/{en3.static_hp}   DMG: {en3.dmg}]', end='')
+                if en3.hp > 0:
+                    print(f'   enemy 3  [HP: {en3.hp}/{en3.static_hp}   DMG: {en3.dmg}]', end='')
+                else:
+                    print(f'   enemy 3  [HP: {en3.hp}/{en3.static_hp}   DMG: {en3.dmg}]  +1 осколок алмаза', end='')
             elif x == 146 and y == 28:
-                print(f'   enemy 4  [HP: {en4.hp}/{en4.static_hp}   DMG: {en4.dmg}]', end='')
+                if en4.hp > 0:
+                    print(f'   enemy 4  [HP: {en4.hp}/{en4.static_hp}   DMG: {en4.dmg}]', end='')
+                else:
+                    print(f'   enemy 4  [HP: {en4.hp}/{en4.static_hp}   DMG: {en4.dmg}]  +1 осколок алмаза', end='')
             elif x == 146 and y == 29:
-                print(f'   enemy 5  [HP: {en5.hp}/{en5.static_hp}   DMG: {en5.dmg}]', end='')
+                if en5.hp > 0:
+                    print(f'   enemy 5  [HP: {en5.hp}/{en5.static_hp}   DMG: {en5.dmg}]', end='')
+                else:
+                    print(f'   enemy 5  [HP: {en5.hp}/{en5.static_hp}   DMG: {en5.dmg}]  +1 осколок алмаза', end='')
             elif x == 146 and y == 30:
-                print(f'   enemy 6  [HP: {en6.hp}/{en6.static_hp}   DMG: {en6.dmg}]', end='')
+                if en6.hp > 0:
+                    print(f'   enemy 6  [HP: {en6.hp}/{en6.static_hp}   DMG: {en6.dmg}]', end='')
+                else:
+                    print(f'   enemy 6  [HP: {en6.hp}/{en6.static_hp}   DMG: {en6.dmg}]  +1 осколок алмаза', end='')
             elif x == 146 and y == 31:
-                print(f'   enemy 7  [HP: {en7.hp}/{en7.static_hp}   DMG: {en7.dmg}]', end='')
+                if en7.hp > 0:
+                    print(f'   enemy 7  [HP: {en7.hp}/{en7.static_hp}   DMG: {en7.dmg}]', end='')
+                else:
+                    print(f'   enemy 7  [HP: {en7.hp}/{en7.static_hp}   DMG: {en7.dmg}]  +1 осколок алмаза', end='')
             elif x == 146 and y == 32:
-                print(f'   enemy 8  [HP: {en8.hp}/{en8.static_hp}   DMG: {en8.dmg}]', end='')
+                if en8.hp > 0:
+                    print(f'   enemy 8  [HP: {en8.hp}/{en8.static_hp}   DMG: {en8.dmg}]', end='')
+                else:
+                    print(f'   enemy 8  [HP: {e8.hp}/{en8.static_hp}   DMG: {en8.dmg}]  +1 осколок алмаза', end='')
             elif x == 146 and y == 33:
-                print(f'   enemy 9  [HP: {en9.hp}/{en9.static_hp}   DMG: {en9.dmg}]', end='')
+                if en9.hp > 0:
+                    print(f'   enemy 9  [HP: {en9.hp}/{en9.static_hp}   DMG: {en9.dmg}]', end='')
+                else:
+                    print(f'   enemy 9  [HP: {en9.hp}/{en9.static_hp}   DMG: {en9.dmg}]  +1 осколок алмаза', end='')
             elif x == 146 and y == 34:
-                print(f'   enemy 10 [HP: {en10.hp}/{en10.static_hp}   DMG: {en10.dmg}]', end='')
+                if en10.hp > 0:
+                    print(f'   enemy 10 [HP: {en10.hp}/{en10.static_hp}   DMG: {en10.dmg}]', end='')
+                else:
+                    print(f'   enemy 10  [HP: {en10.hp}/{en10.static_hp}   DMG: {en10.dmg}]  +1 осколок алмаза', end='')
 
 
             if x == 146 and y == 36:
@@ -346,27 +385,31 @@ def print_level_with_player():
 
 
             elif x == 146 and y == 41:
-
-                print(f'', end='')
+                if len(list_history) > 0:
+                    print(f'   {list_history[-1]}', end='')
             elif x == 146 and y == 42:
-                print(f'', end='')
+                if len(list_history) > 1:
+                    print(f'   {list_history[-2]}', end='')
             elif x == 146 and y == 43:
-                print(f'', end='')
+                if len(list_history) > 2:
+                    print(f'   {list_history[-3]}', end='')
             elif x == 146 and y == 44:
-                print(f'', end='')
+                if len(list_history) > 3:
+                    print(f'   {list_history[-4]}', end='')
             elif x == 146 and y == 45:
-                print(f'', end='')
+                if len(list_history) > 4:
+                    print(f'   {list_history[-5]}', end='')
             elif x == 146 and y == 46:
-                print(f'', end='')
+                if len(list_history) > 5:
+                    print(f'   {list_history[-6]}', end='')
 
 
         print()
 ###########################################################################################################
 list_history = []
 
-if len(list_history) > 7:
+if len(list_history) > 9:
     list_history.remove(list_history[0])
-
 ###########################################################################################################
 class Game:
     def __init__(self, player):
@@ -382,73 +425,106 @@ class Game:
                     list_history.append("Вы ударили Монстра")
                     player.hit(en1.dmg)
                     list_history.append("Монстр ударил Вас")
+                    if en1.hp <= 0:
+                        list_history.append("Монстр был повержен")
                 elif (player.x == en2.x and player.y == en2.y and en2.hp > 0):
                     en2.hit(player.dmg)
                     list_history.append("Вы ударили Монстра")
                     player.hit(en2.dmg)
                     list_history.append("Монстр ударил Вас")
+                    if en2.hp <= 0:
+                        list_history.append("Монстр был повержен")
                 elif (player.x == en3.x and player.y == en3.y and en3.hp > 0):
                     en3.hit(player.dmg)
                     list_history.append("Вы ударили Монстра")
                     player.hit(en3.dmg)
                     list_history.append("Монстр ударил Вас")
+                    if en3.hp <= 0:
+                        list_history.append("Монстр был повержен")
                 elif (player.x == en4.x and player.y == en4.y and en4.hp > 0):
                     en4.hit(player.dmg)
                     list_history.append("Вы ударили Монстра")
                     player.hit(en4.dmg)
                     list_history.append("Монстр ударил Вас")
+                    if en4.hp <= 0:
+                        list_history.append("Монстр был повержен")
                 elif (player.x == en5.x and player.y == en5.y and en5.hp > 0):
                     en5.hit(player.dmg)
                     list_history.append("Вы ударили Монстра")
                     player.hit(en5.dmg)
                     list_history.append("Монстр ударил Вас")
+                    if en5.hp <= 0:
+                        list_history.append("Монстр был повержен")
                 elif (player.x == en6.x and player.y == en6.y and en6.hp > 0):
                     en6.hit(player.dmg)
                     list_history.append("Вы ударили Монстра")
                     player.hit(en6.dmg)
                     list_history.append("Монстр ударил Вас")
+                    if en6.hp <= 0:
+                        list_history.append("Монстр был повержен")
                 elif (player.x == en7.x and player.y == en7.y and en7.hp > 0):
                     en7.hit(player.dmg)
                     list_history.append("Вы ударили Монстра")
                     player.hit(en7.dmg)
                     list_history.append("Монстр ударил Вас")
+                    if en7.hp <= 0:
+                        list_history.append("Монстр был повержен")
                 elif (player.x == en8.x and player.y == en8.y and en8.hp > 0):
                     en8.hit(player.dmg)
                     list_history.append("Вы ударили Монстра")
                     player.hit(en8.dmg)
                     list_history.append("Монстр ударил Вас")
+                    if en8.hp <= 0:
+                        list_history.append("Монстр был повержен")
                 elif (player.x == en9.x and player.y == en9.y and en9.hp > 0):
                     en9.hit(player.dmg)
                     list_history.append("Вы ударили Монстра")
                     player.hit(en9.dmg)
                     list_history.append("Монстр ударил Вас")
+                    if en9.hp <= 0:
+                        list_history.append("Монстр был повержен")
                 elif (player.x == en10.x and player.y == en10.y and en10.hp > 0):
                     en10.hit(player.dmg)
                     list_history.append("Вы ударили Монстра")
                     player.hit(en10.dmg)
+                    if en10.hp <= 0:
+                        list_history.append("Монстр был повержен")
 
-                elif (player.x == we1.x) and (player.y == we1.y) and (we1.symbol not in player.inventory_weapon):
+
+                if (player.x == we1.x) and (player.y == we1.y) and (we1.symbol not in player.inventory_weapon):
                     player.add_weapon(we1.symbol)
                     add_dmg(we1.symbol)
+                    if player.inventory_weapon[-1] == '|':
+                        list_history.append("Вы взяли Меч")
                 elif (player.x == we2.x) and (player.y == we2.y) and (we2.symbol not in player.inventory_weapon):
                     player.add_weapon(we2.symbol)
                     add_dmg(we2.symbol)
+                    if player.inventory_weapon[-1] == ')':
+                        list_history.append("Вы взяли Лук")
                 elif (player.x == we3.x) and (player.y == we3.y) and (we3.symbol not in player.inventory_weapon):
                     player.add_weapon(we3.symbol)
                     add_dmg(we3.symbol)
+                    if player.inventory_weapon[-1] == 'Г':
+                        list_history.append("Вы взяли Топор")
                 elif (player.x == we4.x) and (player.y == we4.y) and (we4.symbol not in player.inventory_weapon):
                     player.add_weapon(we4.symbol)
                     add_dmg(we4.symbol)
+                    if player.inventory_weapon[-1] == 'L':
+                        list_history.append("Вы взяли Ружье")
 
                 elif (player.x == armor.x) and (player.y == armor.y) and (armor.symbol not in player.inventory):
                     player.add_item(armor.symbol)
+                    list_history.append("Вы надели Броню")
                     player.hp += 5
 
                 elif (player.x == potion1.x) and (player.y == potion1.y) and (potion1.symbol not in player.inventory):
                     player.add_item(potion1.symbol)
+                    list_history.append("Вы выпили Зелье")
                     player.hp += 5
+
                 elif (player.x == potion2.x) and (player.y == potion2.y) and (potion2.symbol not in player.inventory):
                     player.add_item(potion2.symbol)
+                    list_history.append("Вы выпили Зелье")
                     player.dmg += 2
 
 
@@ -459,15 +535,17 @@ class Game:
                     print("\n Хотите поменять оружие? [y / n]")
                     choice_num = input('\n Ваш выбор [y / n]: ')
                     while choice_num not in ('y', 'n'):
-                        choice_num = input('Ваш выбор [y / n]: ')
+                        choice_num = input(' Ваш выбор [y / n]: ')
                     if choice_num == 'y':
                         player.inventory_weapon.pop(0)
                         player.dmg = player.static_dmg
                         add_dmg(player.inventory_weapon[0])
+                        list_history.append("Ура! Вы нашли новое оружие! Разработчики не зря старались!)")
                     elif choice_num == 'n':
                         player.inventory_weapon.pop(1)
                         player.dmg = player.static_dmg
                         add_dmg(player.inventory_weapon[0])
+                        list_history.append("Эх, Вы не взяли оружие... А разработчики так старались(((")
 
 
                 move = input('\t\tКуда идём [ W / A / S / D ]: ').lower()
