@@ -155,6 +155,7 @@ class Knight(Player):
         self.y = y
         self.static_hp = 10
         self.static_dmg = 2
+        self.static1_dmg = 2
         self.hp = 10
         self.dmg = 2
         self.weapon = '|'
@@ -166,6 +167,7 @@ class Archer(Player):
         self.y = y
         self.static_hp = 7
         self.static_dmg = 5
+        self.static1_dmg = 5
         self.hp = 7
         self.dmg = 5
         self.weapon = ')'
@@ -177,6 +179,7 @@ class Viking(Player):
         self.y = y
         self.static_hp = 9
         self.static_dmg = 3
+        self.static1_dmg = 3
         self.hp = 9
         self.dmg = 3
         self.weapon = 'Г'
@@ -188,6 +191,7 @@ class Hunter(Player):
         self.y = y
         self.static_hp = 8
         self.static_dmg = 4
+        self.static1_dmg = 4
         self.hp = 8
         self.dmg = 4
         self.weapon = 'L'
@@ -611,7 +615,7 @@ class Game:
                 elif (player.x == armor.x) and (player.y == armor.y) and (armor.symbol not in player.inventory):
                     player.add_item(armor.symbol)
                     list_history.append("Вы надели Броню")
-                    player.hp += 5
+                    player.hp += 10
 
                 elif (player.x == potion1.x) and (player.y == potion1.y) and (potion1.symbol not in player.inventory):
                     player.add_item(potion1.symbol)
@@ -620,8 +624,8 @@ class Game:
                 elif (player.x == potion2.x) and (player.y == potion2.y) and (potion2.symbol not in player.inventory):
                     player.add_item(potion2.symbol)
                     list_history.append("Вы выпили Зелье")
-                    player.dmg += 2
-
+                    player.static1_dmg += 3
+                    player.dmg += 3
 
                 print_level_with_player()
 
@@ -633,12 +637,12 @@ class Game:
                         choice_num = input(' Ваш выбор [y / n]: ')
                     if choice_num == 'y':
                         player.inventory_weapon.pop(0)
-                        player.dmg = player.static_dmg
+                        player.dmg = player.static1_dmg
                         add_dmg(player.inventory_weapon[0])
                         list_history.append("Ура! Вы нашли новое оружие! Разработчики не зря старались!)")
                     elif choice_num == 'n':
                         player.inventory_weapon.pop(1)
-                        player.dmg = player.static_dmg
+                        player.dmg = player.static1_dmg
                         add_dmg(player.inventory_weapon[0])
                         list_history.append("Эх, Вы не взяли оружие... А разработчики так старались(((")
 
@@ -878,7 +882,7 @@ en9 = Enemy(138, 3)
 en10 = Enemy(134, 48)
 
 we1 = Weapon(6, 4, '|')
-we2 = Weapon(99, 8, ')')
+we2 = Weapon(6, 4, ')')
 we3 = Weapon(4, 21, 'Г')
 we4 = Weapon(82, 17, 'L')
 
