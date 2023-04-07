@@ -207,7 +207,7 @@ class Weapon(Object):
         Object.__init__(self, x, y, symbol)
         self.x = x
         self.y = y
-        self.simbol = symbol
+        self.symbol = symbol
 ###########################################################################################################
 def add_dmg(symbol):
     if symbol in player.inventory_weapon:
@@ -394,7 +394,7 @@ def print_level_with_player():
                 if '#' not in player.inventory:
                     print("     Броня: -", end='')
                 else:
-                    print(f"     Броня: +5 hp", end='')
+                    print(f"     Броня: +10 hp", end='')
 
 
             elif x == 146 and y == 17:
@@ -408,7 +408,7 @@ def print_level_with_player():
                 if '▲' not in player.inventory:
                     print(f"   Зелье 2: -", end='')
                 else:
-                    print(f"   Зелье 2: +5 dmg", end='')
+                    print(f"   Зелье 2: +3 dmg", end='')
 
 
             if x == 146 and y == 20:
