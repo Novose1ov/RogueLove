@@ -882,7 +882,7 @@ en9 = Enemy(138, 3)
 en10 = Enemy(134, 48)
 
 we1 = Weapon(6, 4, '|')
-we2 = Weapon(6, 4, ')')
+we2 = Weapon(99, 8, ')')
 we3 = Weapon(4, 21, 'Г')
 we4 = Weapon(82, 17, 'L')
 
